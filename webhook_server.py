@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify
 from papnt.cli import doi
 
 app = Flask(__name__)
@@ -8,6 +8,7 @@ app = Flask(__name__)
 def webhook():
     print('*** $ papnt doi')
     doi()
+    return jsonify({'status': 'success'})
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 10000))
