@@ -9,7 +9,7 @@ from .const import SKIPWORDS, CROSSREF_TO_BIB
 
 def to_notionprop(content: Optional[Any],
                   mode: Literal['title', 'select', 'multi_select',
-                                'rich_text', 'number', 'date']):
+                                'rich_text', 'number', 'date', 'url']):
     def remove_comma_from_string(content: str):
         if ',' not in content:
             return content
@@ -52,6 +52,10 @@ def to_notionprop(content: Optional[Any],
             assert isinstance(content, list)
             date = '-'.join([str(content_) for content_ in content[0]])
             return {'date': {'start': date}}
+        case 'url':
+            assert isinstance(content, str)
+            # return {'rich_text': [{'text': {'content': content}}]}
+            return {'rich_text': [{'text': {'content': content, 'link': {'url': content}}}]}
         case _:
             raise ValueError('Invalid mode')
 
@@ -126,7 +130,7 @@ class NotionPropMaker:
         journal = journal[0] if journal else None
         properties = {
             'Name': to_notionprop(record_name, 'title'),
-            'doi': to_notionprop('https://doi.org/'+info['DOI'], 'rich_text'),
+            'doi': to_notionprop('https://doi.org/'+info['DOI'], 'url'),
             'edition': to_notionprop(info.get('edition-number'), 'rich_text'),
             'First': to_notionprop(authors[0], 'select'),
             'author': to_notionprop(authors, 'multi_select'),
