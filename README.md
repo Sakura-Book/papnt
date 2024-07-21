@@ -1,0 +1,1 @@
+Render.comで使えるようにconfig周りを変更

@@ -1,6 +1,6 @@
 from pathlib import Path
 import configparser
-
+import os
 
 def load_config(ini_path: str) -> dict:
     def eachsection(parser, section):
@@ -15,5 +15,7 @@ def load_config(ini_path: str) -> dict:
         raise FileNotFoundError(f'Not found: {ini_path}')
     parser = configparser.ConfigParser()
     parser.read(ini_path)
-    return {section: eachsection(parser, section)
+    database = {'database': {'tokenkey': os.getenv('tokenkey'),
+                'database_id': os.getenv('database_id')}}
+    return database | {section: eachsection(parser, section)
             for section in parser.sections()}
