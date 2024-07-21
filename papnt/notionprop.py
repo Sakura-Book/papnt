@@ -126,7 +126,7 @@ class NotionPropMaker:
         journal = journal[0] if journal else None
         properties = {
             'Name': to_notionprop(record_name, 'title'),
-            'doi': to_notionprop(info['DOI'], 'rich_text'),
+            'doi': to_notionprop('https://doi.org/'+info['DOI'], 'rich_text'),
             'edition': to_notionprop(info.get('edition-number'), 'rich_text'),
             'First': to_notionprop(authors[0], 'select'),
             'author': to_notionprop(authors, 'multi_select'),
