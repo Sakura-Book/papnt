@@ -9,14 +9,20 @@
 ## 使い方
 1. pipでリポジトリをinstallする
     ```
-    pip install git+https://github.com/Sakura-Book/papnt.git@main
+    $ pip install git+https://github.com/Sakura-Book/papnt.git@main
     ```
-2. `~/.bashrc`に、以下の内容を追記する
+2. `~/.bashrc`に、以下の内容を追記
     ```
-    export token=/*自分のDBと紐づけてあるNotion Integrationのtoken*/
+    export tokenkey=/*自分のDBと紐づけてあるNotion Integrationのtoken*/
     export database_id=/*自分のDBのID(URLから切り取ってくる)*/
     ```
-3. 動作確認
+3. `~/.bashrc`の更新を反映
+   ```
+   $ source ~/.bashrc
+   $ source ~/.bash_profile
+   ```
+3. papntの動作確認
     ```
-    papnt doi
+    $ papnt --help
+    $ papnt doi
     ```
