@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: papnt
+Version: 0.0.1
+Summary: Academic paper management with Notion
+Home-page: https://github.com/issakuss/papnt
+Author: Issaku Kawashima
+Author-email: issakuss@gmail.com
+Keywords: papnt
+Requires-Python: >=3.10
